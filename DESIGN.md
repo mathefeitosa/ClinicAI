@@ -32,6 +32,41 @@ Objetivo: aparência sóbria e previsível, em que a cor só aparece para indica
 
 Os pares texto/fundo foram escolhidos para contraste de leitura (WCAG AA) nos dois temas.
 
+## Texto
+
+Todos os tamanhos são relativos (`rem`) e saem de uma escala única. Não use `px` para tamanho de fonte.
+
+| Variável | Tamanho no padrão | Uso |
+|---|---|---|
+| `--fs-xs` | 12px | Etiquetas pequenas, títulos de seção em maiúsculas |
+| `--fs-sm` | 14px | Botões, chips, rótulos de campo, texto auxiliar |
+| `--fs-md` | 16px | Texto corrido, campos de digitação |
+| `--fs-lg` | 18px | Títulos de bloco (`h2`) |
+| `--fs-xl` | 22px | Título do app (`h1`) |
+
+Campos de digitação nunca ficam abaixo de 16px, para o celular não dar zoom ao tocar.
+
+**Redação:** só a primeira letra maiúscula (“Exportar backup”, não “Exportar Backup”), exceto siglas. Rótulos curtos, com o verbo da ação. Títulos de seção numerados na ordem da visita.
+
+### Tamanho do texto ajustável
+
+O botão **Aa** (tela inicial e cabeçalho do paciente) muda o tamanho de tudo: Pequeno 90%, Padrão 100%, Grande 115%, Muito grande 130%, Máximo 145%. Funciona porque toda a interface usa `rem`: o app só muda o tamanho da fonte do `<html>`. A escolha fica salva no aparelho (`SMART_CLINICAI_UI` no localStorage) e não entra no backup. Ao criar algo novo, confira no tamanho Máximo em 390px: nada pode sair da tela; o conteúdo deve quebrar linha.
+
+## Controles
+
+| Variável | Tamanho no padrão | Uso |
+|---|---|---|
+| `--bh` | 44px (2,75rem) | Altura de **todos** os botões e campos de uma linha |
+| `--chh` | 36px (2,25rem) | Altura dos chips |
+
+Existe um só tamanho de botão. O que muda é o papel (principal, secundário, exclusão), não o tamanho. A classe `.mc` foi mantida só por compatibilidade e não altera nada.
+
+## Avisos
+
+Os avisos curtos (“Salvo!”, “Copiado!”) aparecem logo abaixo do cabeçalho fixo, somem em cerca de 3 segundos e não bloqueiam toques (`pointer-events: none`). No desktop ficam no canto superior direito. Mostram no máximo dois de cada vez.
+
+Confirmações de ações destrutivas não usam aviso: acontecem no próprio botão. Exemplo: “Excluir paciente” vira “Toque de novo para excluir” (vermelho) por 4 segundos.
+
 ## Forma
 
 | Variável | Valor | Uso |

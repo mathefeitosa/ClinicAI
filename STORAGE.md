@@ -10,6 +10,7 @@ Regras para atualizar o app sem perder os dados de quem já usa.
 | localStorage | `SMART_CLINICAI_DB_V1` | Cópia do estado, para abrir o app na hora |
 | IndexedDB, store `snap` | `dia-AAAA-MM-DD`, `antes-*`, `pre-v*` | Cópias automáticas |
 | localStorage | `SMART_CLINICAI_AI` | Provedor, chaves e modelos de IA (fora do backup) |
+| localStorage | `SMART_CLINICAI_UI` | Preferências de tela do aparelho, como o tamanho do texto (`fs`). Fora do backup |
 
 Toda gravação vai para os dois lugares. Ao abrir, o app usa o localStorage e depois confere o IndexedDB: se o IndexedDB tiver um `savedAt` mais novo (por exemplo, localStorage cheio ou apagado), ele vence.
 

@@ -1,5 +1,5 @@
 // Ao atualizar o app, troque a versão para renovar o cache
-const VERSION = "clinicai-v8";
+const VERSION = "clinicai-v10";
 const ASSETS = ["./", "index.html", "manifest.webmanifest",
   "icons/icon-192.png", "icons/icon-512.png", "icons/icon-maskable-512.png", "icons/apple-touch-icon.png"];
 self.addEventListener("install", e => {
