@@ -1,0 +1,6 @@
+{
+  "name": "clinicai-tests",
+  "private": true,
+  "scripts": { "test": "node storage.test.js" },
+  "devDependencies": { "fake-indexeddb": "6.0.0", "jsdom": "24.1.0" }
+}
