@@ -25,6 +25,11 @@ const ok=(c,m)=>console.log((c?'PASS ':'FAIL ')+m);
  // C: localStorage cheio -> salva só no IndexedDB e reabre com o mais novo
  w=await open(F,ls(w),{quota:true});w.eval('S.pts[0].nome="Novo";pst()');await wait(400);
  const stale=ls(w);w=await open(F,stale);ok(w.eval('S.pts[0].nome')=='Novo','C com localStorage cheio, o IndexedDB mais novo vence');
+ // I: versão antiga do app (sem IndexedDB) alterou só o localStorage, mantendo savedAt
+ { const F2=new IDBFactory();let w2=await open(F2,{[K]:JSON.stringify({schema:2,pts:[{id:"o1",nome:"Antes"}]})});await wait(400);
+   const old=JSON.parse(w2.localStorage.getItem(K));old.pts[0].nome="Mudou no app antigo";
+   w2=await open(F2,{[K]:JSON.stringify(old)});ok(w2.eval('S.pts[0].nome')=='Mudou no app antigo','I alteração feita por versão antiga (só localStorage) não se perde');
+   const raw={pts:[{nome:"Sem data"}]};w2=await open(F2,{[K]:JSON.stringify(raw)});ok(w2.eval('S.pts[0].nome')=='Sem data','I localStorage sem savedAt prevalece sobre IndexedDB'); }
  // D: dados de versão futura preservam campos desconhecidos
  const fut={schema:9,pts:[{id:"f1",leito:"B2",nome:"Fut",campoNovo:{a:1}}],configNova:true};
  w=await open(new IDBFactory(),{[K]:JSON.stringify(fut)});S=w.eval('S');ok(S.schema==9&&S.configNova===true&&S.pts[0].campoNovo.a==1,'D versão futura: mantém schema e campos desconhecidos');
